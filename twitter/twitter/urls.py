@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from msgs.models import Msg
+import msgs.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^msgs/show/(?P<id>(\d)+)/', msgs.views.ShowView.as_view(), name = 'msgs-show'),
+    url(r'^msgs/send_message/(?P<id>(\d)+)/', msgs.views.SendMessageView.as_view(), name='msgs-send-message'),
+    url(r'^msgs/show_message/(?P<id>(\d)+)/', msgs.views.ShowMessageView.as_view(), name='msgs-show-message')
 ]

@@ -1,8 +1,7 @@
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
-from django.views.generic import FormView
+from django.views.generic import FormView, UpdateView
 from users.forms import UsersUserLoginForm, UsersUserSingupForm
-
 
 # Create your views here.
 from users.models import User
@@ -28,3 +27,9 @@ class UsersUserSingupView(FormView):
         )
         login(self.request, user)
         return redirect("/")
+
+
+class UsersUserModifyView(UpdateView):
+    model = User
+    form_class = UsersUserSingupForm
+    template_name = "users/generic_form.html"
